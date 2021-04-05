@@ -56,8 +56,10 @@ public class Companion {
         final List<String> incompatibilities = new ArrayList<>();
 
         // Check the MC version of the server.
-        if (!VersionUtils.isOneFourteen()) {
-            incompatibilities.add("Your server version &8(&b" + Bukkit.getVersion() + "&8)&7 is unsupported by &bLevelledMobs v" + main.getDescription().getVersion() + "&7!" +
+        final String currentServerVersion = Bukkit.getVersion();
+        boolean isRunningSupportedVersion = VersionUtils.isOneFourteen();
+        if (!isRunningSupportedVersion) {
+            incompatibilities.add("Your server version &8(&b" + currentServerVersion + "&8)&7 is unsupported by &bLevelledMobs v" + main.getDescription().getVersion() + "&7!" +
                     "Compatible MC versions: &b" + String.join(", ", Utils.getSupportedServerVersions()) + "&7.");
         }
 
@@ -105,7 +107,7 @@ public class Companion {
         main.dropsCfg = loadEmbeddedResource("defaultDrops.yml");
 
         main.configUtils.load();
-        ExternalCompatibilityManager.load(main);
+        main.externalCompatibilityManager.load();
 
         // remove legacy files if they exist
         final String[] legacyFile = {"attributes.yml", "drops.yml"};

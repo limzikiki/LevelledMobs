@@ -23,9 +23,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class LevelledMobs extends JavaPlugin {
 
     // Manager classes
-    public final LevelInterface levelInterface = new LevelInterface(this);
+    public LevelInterface levelInterface = new LevelInterface(this);
     public LevelManager levelManager;
-    public final MobDataManager mobDataManager = new MobDataManager(this);
+    public MobDataManager mobDataManager = new MobDataManager(this);
+    public ExternalCompatibilityManager externalCompatibilityManager = new ExternalCompatibilityManager(this);
     public WorldGuardManager worldGuardManager;
     public CustomDropsHandler customDropsHandler;
     public ChunkLoadListener chunkLoadListener;
@@ -37,7 +38,7 @@ public class LevelledMobs extends JavaPlugin {
     public YamlConfiguration attributesCfg;
     public YamlConfiguration dropsCfg;
     public YamlConfiguration customDropsCfg;
-    public final ConfigUtils configUtils = new ConfigUtils(this);
+    public ConfigUtils configUtils = new ConfigUtils(this);
 
     // Misc
     public EntityDamageDebugListener entityDamageDebugListener;

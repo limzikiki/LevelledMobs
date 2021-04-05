@@ -1,6 +1,5 @@
 package me.lokka30.levelledmobs.listeners;
 
-import me.lokka30.levelledmobs.LevelInterface;
 import me.lokka30.levelledmobs.LevelledMobs;
 import me.lokka30.levelledmobs.misc.MobProcessReason;
 import org.bukkit.entity.Entity;
@@ -47,7 +46,7 @@ public class EntityTransformListener implements Listener {
 
             final LivingEntity transformedLivingEntity = (LivingEntity) transformedEntity;
 
-            if (main.levelInterface.getLevellableState(transformedLivingEntity) != LevelInterface.LevellableState.ALLOWED) {
+            if (!main.levelManager.isLevellable(transformedLivingEntity)) {
                 main.levelManager.updateNametagWithDelay(transformedLivingEntity, null, livingEntity.getWorld().getPlayers(), 1);
                 continue;
             }
